@@ -1,0 +1,5 @@
+.tool-versions
+*.Identifier
+
+*.osu
+anonymization_key.txt
