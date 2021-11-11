@@ -42,7 +42,8 @@ end
 
 anonymize_line = fn
   "Creator" <> _, _ -> "Creator:Creator\n"
-  "Version" <> _, name -> "Version:#{name}\n"
+  "Tags" <> _, _ -> "Tags:\n"
+  "Version" <> _, name -> "Version:#{name}\n",
   line, _ -> line
 end
 
