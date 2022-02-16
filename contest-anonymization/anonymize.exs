@@ -1,5 +1,5 @@
 Mix.install([
-  {:random_name_generator, "~> 0.3.0", github: "MzudemO/elixir-random-names", branch: "main"}
+  {:friendlyid, "~> 0.2.0"}
 ])
 
 base_filename = System.argv() |> List.first()
@@ -32,7 +32,7 @@ get_name = fn filename ->
   end)
 end
 
-get_anonym = fn name -> %{name: name, anonymized: RandomNameGenerator.random_name(1, 1, " ")} end
+get_anonym = fn name -> %{name: name, anonymized: FriendlyID.generate(2, separator: " ")} end
 
 write_to_log = fn %{name: name, anonymized: anonymized}, logfile ->
   IO.write(logfile, "#{String.pad_trailing(name, 32)}#{anonymized}\n")
@@ -43,7 +43,7 @@ end
 anonymize_line = fn
   "Creator" <> _, _ -> "Creator:Creator\n"
   "Tags" <> _, _ -> "Tags:\n"
-  "Version" <> _, name -> "Version:#{name}\n",
+  "Version" <> _, name -> "Version:#{name}\n"
   line, _ -> line
 end
 
